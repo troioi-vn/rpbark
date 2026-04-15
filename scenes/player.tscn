@@ -229,8 +229,6 @@ animation = &"run_idle"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1977542258]
 limit_left = 0
-limit_top = 0
-limit_right = 2200
-limit_bottom = 720
-position_smoothing_enabled = true
-position_smoothing_speed = 6.0
+limit_top = -3
+limit_right = 4500
+limit_bottom = 717
