@@ -6,7 +6,7 @@ This document describes the current player implementation for `R.P.Bark`.
 
 - Player scene: `res://scenes/player.tscn`
 - Player logic: `res://scripts/player.gd`
-- Current startup world that instantiates the player: `res://scenes/world.tscn`
+- Current startup street scene that instantiates the player: `res://scenes/street.tscn`
 
 ## Responsibilities
 
