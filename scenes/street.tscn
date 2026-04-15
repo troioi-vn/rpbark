@@ -16,11 +16,11 @@
 [ext_resource type="Texture2D" uid="uid://llb3d8ojitfa" path="res://assets/street/trees/middle_lane_tree3.png" id="14_jyknq"]
 [ext_resource type="Texture2D" uid="uid://bye77io137k5s" path="res://assets/street/trees/middle_lane_tree4.png" id="15_rqkmu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lx6vu"]
-size = Vector2(4301, 77)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hsaxj"]
-size = Vector2(260, 24)
+size = Vector2(211, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lx6vu"]
+size = Vector2(11200, 77)
 
 [node name="Street" type="Node2D" unique_id=683708755]
 metadata/_edit_horizontal_guides_ = [643.0]
@@ -29,7 +29,7 @@ metadata/_edit_horizontal_guides_ = [643.0]
 scroll_ignore_camera_zoom = true
 
 [node name="FarLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=543878983]
-motion_scale = Vector2(0.18, 0.05)
+motion_scale = Vector2(0.18, 1)
 
 [node name="FarBand" type="Node2D" parent="ParallaxBackground/FarLayer" unique_id=783836550]
 script = ExtResource("1_b0x1q")
@@ -38,6 +38,7 @@ base_y = 330.0
 band_height = 60.0
 hill_width = 360.0
 hill_variation = 20.0
+width = 4307.0
 
 [node name="Clouds" type="Node2D" parent="ParallaxBackground/FarLayer" unique_id=1499582874]
 
@@ -70,13 +71,30 @@ scale = Vector2(0.95, 0.95)
 texture = ExtResource("3_1lc6h")
 centered = false
 
+[node name="Cloud06" type="Sprite2D" parent="ParallaxBackground/FarLayer/Clouds" unique_id=109413667]
+position = Vector2(2470, 102)
+texture = ExtResource("5_7mw7v")
+centered = false
+
+[node name="Cloud07" type="Sprite2D" parent="ParallaxBackground/FarLayer/Clouds" unique_id=1876772439]
+position = Vector2(3160, 144)
+scale = Vector2(1.05, 1.05)
+texture = ExtResource("4_6v4ji")
+centered = false
+
+[node name="Cloud08" type="Sprite2D" parent="ParallaxBackground/FarLayer/Clouds" unique_id=52321345]
+position = Vector2(3890, 94)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("3_1lc6h")
+centered = false
+
 [node name="MidLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1817873752]
-motion_scale = Vector2(0.35, 0.12)
+motion_scale = Vector2(0.35, 1)
 
 [node name="Houses" type="Node2D" parent="ParallaxBackground/MidLayer" unique_id=1792220693]
 
 [node name="Tree04" type="Sprite2D" parent="ParallaxBackground/MidLayer/Houses" unique_id=536376211]
-position = Vector2(605, 429)
+position = Vector2(605, 432.26)
 scale = Vector2(0.82, 0.82)
 texture = ExtResource("14_jyknq")
 centered = false
@@ -89,7 +107,7 @@ centered = false
 
 [node name="WallSegment01" type="Sprite2D" parent="ParallaxBackground/MidLayer/Houses" unique_id=1146578976]
 modulate = Color(0.94, 0.94, 0.97, 0.9)
-position = Vector2(501.99994, 504)
+position = Vector2(501.99994, 504.76)
 scale = Vector2(0.48, 0.48)
 texture = ExtResource("10_kmj0v")
 centered = false
@@ -108,20 +126,20 @@ texture = ExtResource("9_jv0xk")
 centered = false
 
 [node name="Tree06" type="Sprite2D" parent="ParallaxBackground/MidLayer/Houses" unique_id=89131325]
-position = Vector2(1657, 198)
+position = Vector2(1657, 230.89)
 scale = Vector2(1.5668203, 1.5668203)
 texture = ExtResource("11_ntt0q")
 centered = false
 
 [node name="Tree09" type="Sprite2D" parent="ParallaxBackground/MidLayer/Houses" unique_id=757432496]
-position = Vector2(3093, 417)
+position = Vector2(3093, 416.68)
 scale = Vector2(0.82, 0.82)
 texture = ExtResource("15_rqkmu")
 centered = false
 
 [node name="WallSegment02" type="Sprite2D" parent="ParallaxBackground/MidLayer/Houses" unique_id=256437537]
 modulate = Color(0.94, 0.94, 0.97, 0.88)
-position = Vector2(1735, 516)
+position = Vector2(1735, 516.28)
 scale = Vector2(0.44, 0.44)
 texture = ExtResource("10_kmj0v")
 centered = false
@@ -139,78 +157,118 @@ texture = ExtResource("7_5us3x")
 centered = false
 
 [node name="Tree07" type="Sprite2D" parent="ParallaxBackground/MidLayer/Houses" unique_id=978012828]
-position = Vector2(3158.0002, 318)
+position = Vector2(3158.0002, 361.03)
 scale = Vector2(1.0480773, 1.0480773)
 texture = ExtResource("13_qytaj")
 centered = false
 
-[node name="WallSegment03" type="Sprite2D" parent="ParallaxBackground/MidLayer/Houses" unique_id=1731495678]
-modulate = Color(0.94, 0.94, 0.97, 0.88)
-position = Vector2(3081.9998, 519)
-scale = Vector2(0.44, 0.44)
-texture = ExtResource("10_kmj0v")
-centered = false
-
 [node name="NearLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=64709857]
-motion_scale = Vector2(0.6, 0.2)
+motion_scale = Vector2(0.6, 1)
 
 [node name="Trees" type="Node2D" parent="ParallaxBackground/NearLayer" unique_id=802887306]
 
 [node name="Tree02" type="Sprite2D" parent="ParallaxBackground/NearLayer/Trees" unique_id=634755983]
-position = Vector2(310, 193.00002)
+position = Vector2(310, 192.99)
 scale = Vector2(1.673077, 1.673077)
 texture = ExtResource("13_qytaj")
 centered = false
 
 [node name="Tree03" type="Sprite2D" parent="ParallaxBackground/NearLayer/Trees" unique_id=1654943489]
-position = Vector2(701.00006, 250.00002)
+position = Vector2(701.00006, 249.8)
 scale = Vector2(1.7476635, 1.4093189)
 texture = ExtResource("12_qsy2s")
 centered = false
 
 [node name="Tree05" type="Sprite2D" parent="ParallaxBackground/NearLayer/Trees" unique_id=708875157]
-position = Vector2(1392, 358)
+position = Vector2(1392, 358.15)
 scale = Vector2(1.0320511, 1.0320511)
 texture = ExtResource("15_rqkmu")
 centered = false
 
 [node name="Tree08" type="Sprite2D" parent="ParallaxBackground/NearLayer/Trees" unique_id=1856339759]
-position = Vector2(2524.0002, 280)
+position = Vector2(2524.0002, 277.44)
 scale = Vector2(1.4224606, 1.4224606)
 texture = ExtResource("14_jyknq")
 centered = false
+
+[node name="Tree10" type="Sprite2D" parent="ParallaxBackground/NearLayer/Trees" unique_id=774213762]
+position = Vector2(4127.6, 325.6)
+scale = Vector2(1.15, 1.15)
+texture = ExtResource("15_rqkmu")
+centered = false
+
+[node name="Tree11" type="Sprite2D" parent="ParallaxBackground/NearLayer/Trees" unique_id=190204879]
+position = Vector2(4620, 358.15)
+scale = Vector2(1.0320511, 1.0320511)
+texture = ExtResource("15_rqkmu")
+centered = false
+
+[node name="Tree12" type="Sprite2D" parent="ParallaxBackground/NearLayer/Trees" unique_id=1468270614]
+position = Vector2(5335, 277.44)
+scale = Vector2(1.4224606, 1.4224606)
+texture = ExtResource("14_jyknq")
+centered = false
+
+[node name="Tree13" type="Sprite2D" parent="ParallaxBackground/NearLayer/Trees" unique_id=1644335407]
+position = Vector2(5950, 325.6)
+scale = Vector2(1.15, 1.15)
+texture = ExtResource("15_rqkmu")
+centered = false
+
+[node name="StreetProps" type="Node2D" parent="." unique_id=1998802142]
+
+[node name="WallSegment04" type="Sprite2D" parent="StreetProps" unique_id=883939711]
+modulate = Color(0.94, 0.94, 0.97, 0.88)
+position = Vector2(2915, 576)
+scale = Vector2(0.44, 0.44)
+texture = ExtResource("10_kmj0v")
+centered = false
+
+[node name="WallSegment03" type="Sprite2D" parent="StreetProps" unique_id=1731495678]
+modulate = Color(0.94, 0.94, 0.97, 0.88)
+position = Vector2(3081.9998, 516.28)
+scale = Vector2(0.44, 0.44)
+texture = ExtResource("10_kmj0v")
+centered = false
+
+[node name="Platform" type="StaticBody2D" parent="." unique_id=1213857271]
+position = Vector2(920, 520)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform" unique_id=1501526040]
+position = Vector2(2100.5, 61)
+shape = SubResource("RectangleShape2D_hsaxj")
+
+[node name="Rock" type="Polygon2D" parent="Platform" unique_id=2110486182]
+position = Vector2(2077, 69)
+color = Color(0.41988364, 0.12844503, 0.16284019, 1)
+polygon = PackedVector2Array(-82, -12, 130, -12, 131, -3, -82, -3)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Platform" unique_id=1247368274]
+position = Vector2(2267.5, 0)
+shape = SubResource("RectangleShape2D_hsaxj")
+
+[node name="Rock2" type="Polygon2D" parent="Platform" unique_id=957336374]
+position = Vector2(2244, 8)
+color = Color(0.29454494, 0.23258719, 0.1740421, 1)
+polygon = PackedVector2Array(-82, -12, 130, -12, 131, -3, -82, -3)
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=1852418465]
 position = Vector2(1080, 680)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=1539144662]
-position = Vector2(1070.5, 1.5)
+position = Vector2(4520, 0)
 shape = SubResource("RectangleShape2D_lx6vu")
 
 [node name="Soil" type="Polygon2D" parent="Ground" unique_id=1067371103]
 color = Color(0.388235, 0.27451, 0.192157, 1)
-polygon = PackedVector2Array(-1082, -40, 3221, -38, 3223, 40, -1081, 40)
+polygon = PackedVector2Array(-1080, -38.5, 10120, -38.5, 10120, 38.5, -1080, 38.5)
 
 [node name="Top" type="Polygon2D" parent="Ground" unique_id=1031738692]
-scale = Vector2(1.9442768, 0.96776766)
 color = Color(0.22791775, 0.22791775, 0.22791775, 1)
-polygon = PackedVector2Array(-557.0195, -40.29895, 1657.1714, -38.2323, 1653.0569, -16.532898, -13.478897, -17.312256, -556.5052, -17.566223)
-
-[node name="Platform" type="StaticBody2D" parent="." unique_id=1213857271]
-visible = false
-position = Vector2(920, 520)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform" unique_id=1501526040]
-position = Vector2(266, -6)
-shape = SubResource("RectangleShape2D_hsaxj")
-
-[node name="Rock" type="Polygon2D" parent="Platform" unique_id=2110486182]
-position = Vector2(264, -8)
-color = Color(0.22255167, 0.75331736, 0.49860078, 1)
-polygon = PackedVector2Array(-130, -12, 130, -12, 130, 12, -130, 12)
+polygon = PackedVector2Array(-1080, -38.5, 10120, -38.5, 10120, -17.5, -1080, -17.5)
 
 [node name="Player" parent="." unique_id=919974374 instance=ExtResource("2_m7s2m")]
-position = Vector2(237, 640)
+position = Vector2(237, 641)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=979969036]
 

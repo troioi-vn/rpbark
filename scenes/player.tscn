@@ -219,16 +219,16 @@ animations = [{
 script = ExtResource("1_c3vss")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1877277035]
-position = Vector2(3, -32.5)
+position = Vector2(74, -32.5)
 shape = SubResource("RectangleShape2D_6n4if")
 
 [node name="DogSprite" type="AnimatedSprite2D" parent="." unique_id=235545630]
-position = Vector2(-1, -65)
+position = Vector2(70, -65)
 sprite_frames = SubResource("SpriteFrames_4y8l3")
 animation = &"run_idle"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1977542258]
 limit_left = 0
-limit_top = -3
-limit_right = 4500
+limit_top = 0
+limit_right = 11840
 limit_bottom = 717

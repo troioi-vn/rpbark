@@ -15,6 +15,7 @@ The goal is not to mirror the code line by line. The goal is to explain the part
 ## Docs
 
 - [Player System](./player.md): movement, run toggle, animation states, sprite-sheet assumptions, and tuning notes for the player character.
+- [Street Scene](./scene.md): environment layout, parallax rules, ground/camera ownership, and scene-maintenance notes for the current playable street.
 
 ## Notes
 
