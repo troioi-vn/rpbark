@@ -1,0 +1,85 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_c3vss"]
+[ext_resource type="Texture2D" path="res://assets/player/idle_left.png" id="2_0hcn1"]
+[ext_resource type="Texture2D" path="res://assets/player/idle_right.png" id="3_t3iua"]
+[ext_resource type="Texture2D" path="res://assets/player/jump_left.png" id="4_fqj0y"]
+[ext_resource type="Texture2D" path="res://assets/player/jump_right.png" id="5_2xv8r"]
+[ext_resource type="Texture2D" path="res://assets/player/run_left.png" id="6_ofla3"]
+[ext_resource type="Texture2D" path="res://assets/player/run_right.png" id="7_3hp15"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6n4if"]
+size = Vector2(44, 70)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4y8l3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0hcn1")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_t3iua")
+}],
+"loop": true,
+"name": &"idle_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_fqj0y")
+}],
+"loop": true,
+"name": &"jump_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_2xv8r")
+}],
+"loop": true,
+"name": &"jump_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ofla3")
+}],
+"loop": true,
+"name": &"run_left",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_3hp15")
+}],
+"loop": true,
+"name": &"run_right",
+"speed": 8.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_c3vss")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_6n4if")
+
+[node name="DogSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -28)
+scale = Vector2(0.18, 0.18)
+sprite_frames = SubResource("SpriteFrames_4y8l3")
+animation = &"idle_right"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = true
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0
+limit_left = 0
+limit_top = 0
+limit_right = 2200
+limit_bottom = 720
