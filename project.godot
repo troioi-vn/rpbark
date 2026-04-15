@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="R.P.Bark"
-run/main_scene="res://scenes/world.tscn"
+run/main_scene="res://scenes/street.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -27,5 +27,7 @@ window/stretch/mode="canvas_items"
 
 [rendering]
 
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true
 rendering_device/driver.windows="d3d12"
 environment/defaults/default_clear_color=Color(0.556863, 0.772549, 0.952941, 1)
