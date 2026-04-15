@@ -8,7 +8,7 @@ This file gives working guidance for agents collaborating in this repository.
 - Project name: `R.P.Bark`
 - Genre direction: pixel art side-scrolling RPG from a dog's point of view
 - Current scope: a tiny 2D side-scroller prototype that serves as scaffolding for the full game
-- Current entry scene: `res://scenes/world.tscn`
+- Current entry scene: `res://scenes/street.tscn`
 - Current player scene: `res://scenes/player.tscn`
 - Current gameplay: move left/right, jump, parallax background, dog sprite state switching
 
@@ -105,7 +105,7 @@ Before wrapping up substantial changes:
 
 ## Current Gameplay References
 
-- Main world scene: `scenes/world.tscn`
+- Main street scene: `scenes/street.tscn`
 - Player logic: `scripts/player.gd`
 - Procedural parallax band drawing: `scripts/parallax_band.gd`
 - Player art: `assets/player/*.png`

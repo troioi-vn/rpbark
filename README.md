@@ -7,7 +7,7 @@ Right now this repository is the game's scaffold: a small playable foundation wi
 ## Current State
 
 - engine: Godot `4.6.x`
-- main scene: `res://scenes/world.tscn`
+- main scene: `res://scenes/street.tscn`
 - player scene: `res://scenes/player.tscn`
 - current gameplay: run, jump, collide with terrain, view parallax scenery
 
