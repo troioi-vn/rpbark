@@ -61,6 +61,9 @@ Comfort level:
 - saving minimal game state with `ConfigFile` and `user://`
 - loading minimal game state back from `ConfigFile`
 - freezing animation state intentionally instead of defaulting to frame zero
+- declaring and emitting a simple signal for player state changes
+- using a `ProgressBar` as a screen-fixed HUD meter
+- separating run intent from actual stamina-backed run movement
 
 ## Practical Things Already Done
 
@@ -84,6 +87,9 @@ Comfort level:
 - added a first tiny real save file containing the player's position
 - added a Load option that restores the saved player position
 - added a simple `I` key inventory overlay with starter items
+- added stamina-backed run movement with drain, delayed recovery, and a depletion lockout
+- added a fixed HUD stamina bar driven by the player's `stamina_changed` signal
+- expanded the save file from position-only to position plus stamina
 - learned that `Camera2D` limits are screen-edge limits, not player-position limits
 - learned that street-facing parallax layers often want depth on `x` but stability on `y`
 - learned that collidable level geometry should stay out of `ParallaxLayer`, even when the matching art looks like background scenery
@@ -100,6 +106,7 @@ Comfort level:
 - sprite-sheet workflow with `SpriteFrames` and frame slicing
 - toggled player state with keyboard input events
 - built a small `Control` menu inside a `CanvasLayer`
+- bound a `ProgressBar` to player state with a signal
 - project docs in `docs/`
 - `git log` / commit history as a learning and orientation tool
 - export dialog
@@ -133,12 +140,12 @@ If the player can stand on it, the node should usually live in world space rathe
 - organizing assets into meaningfully named folders
 - updating lightweight docs when systems change
 - building small screen-fixed UI with `Control` nodes
+- binding a `ProgressBar` to player state through a signal
 - adding a named input action in `project.godot`
 - reusing the `CanvasLayer` overlay pattern for another menu
 
 ## Things Not Yet Learned Deeply
 
-- signals
 - custom input map setup
 - tilemaps / tilesets
 - animation player vs animated sprite vs sprite-sheet import workflow at a broader level
@@ -147,7 +154,7 @@ If the player can stand on it, the node should usually live in world space rathe
 - dialogue systems
 - sound and music
 - UI systems with `Control`
-- saving/loading
+- broader save/load design for many values and versioned save data
 - instancing many gameplay objects dynamically
 - finite state machines
 - physics layers and masks

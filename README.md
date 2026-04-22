@@ -2,14 +2,14 @@
 
 R.P.Bark is a pixel art side-scrolling RPG prototype from a dog's point of view, built in Godot 4.6.
 
-Right now this repository is the game's scaffold: a small playable foundation with movement, jumping, parallax background layers, dog sprite state switching, and a tiny pause/save/load menu. The goal is to keep that base simple, readable, and easy to extend into a real RPG.
+Right now this repository is the game's scaffold: a small playable foundation with movement, stamina-backed running, jumping, parallax background layers, dog sprite state switching, and a tiny pause/save/load menu. The goal is to keep that base simple, readable, and easy to extend into a real RPG.
 
 ## Current State
 
 - engine: Godot `4.6.x`
 - main scene: `res://scenes/street.tscn`
 - player scene: `res://scenes/player.tscn`
-- current gameplay: run, jump, collide with terrain, view parallax scenery, save/load player position from the Esc menu
+- current gameplay: walk, stamina-backed run, jump, collide with terrain, view parallax scenery, save/load player position and stamina from the Esc menu
 
 ## Run Locally
 

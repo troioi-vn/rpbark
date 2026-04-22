@@ -1,10 +1,16 @@
 extends CharacterBody2D
 
+signal stamina_changed(current: float, maximum: float)
+
 const RUN_SPEED := 240.0
 const WALK_SPEED := RUN_SPEED * 0.5
 const JUMP_VELOCITY := -420.0
 const FLOOR_ACCELERATION := 1400.0
 const FLOOR_DECELERATION := 1800.0
+const STAMINA_DRAIN_PER_SECOND := 1.0
+const STAMINA_RECOVERY_PER_SECOND := 1.0
+const STAMINA_RECOVERY_DELAY := 1.0
+const STAMINA_DEPLETION_RESUME_RATIO := 0.1
 const WALK_ANIMATION := &"walk"
 const RUN_ANIMATION := &"run"
 const RUN_IDLE_ANIMATION := &"run_idle"
@@ -17,8 +23,16 @@ var facing_sign := 1.0
 var run_mode_enabled := false
 var last_walk_frame := 0
 
+var max_stamina := 100.0
+var stamina := max_stamina
+var stamina_recovery_delay_remaining := 0.0
+var stamina_depletion_locked := false
+var actual_run_movement := false
+
 
 func _ready() -> void:
+	stamina = clampf(stamina, 0.0, max_stamina)
+	stamina_changed.emit(stamina, max_stamina)
 	_update_animation()
 
 
@@ -35,8 +49,9 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 
 	var direction := Input.get_axis("ui_left", "ui_right")
+	actual_run_movement = _update_stamina(delta, _wants_run(direction))
 	var acceleration := FLOOR_ACCELERATION if direction != 0.0 else FLOOR_DECELERATION
-	var move_speed := RUN_SPEED if run_mode_enabled else WALK_SPEED
+	var move_speed := RUN_SPEED if actual_run_movement else WALK_SPEED
 	var target_speed := direction * move_speed
 
 	velocity.x = move_toward(velocity.x, target_speed, acceleration * delta)
@@ -44,6 +59,41 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	_update_facing(direction)
 	_update_animation()
+
+
+func set_stamina(value: float) -> void:
+	var previous_stamina := stamina
+	stamina = clampf(value, 0.0, max_stamina)
+
+	if stamina <= 0.0:
+		stamina_depletion_locked = true
+	elif stamina >= max_stamina * STAMINA_DEPLETION_RESUME_RATIO:
+		stamina_depletion_locked = false
+
+	if not is_equal_approx(stamina, previous_stamina):
+		stamina_changed.emit(stamina, max_stamina)
+
+
+func _wants_run(direction: float) -> bool:
+	return run_mode_enabled and direction != 0.0
+
+
+func _update_stamina(delta: float, wants_run: bool) -> bool:
+	if wants_run and _can_spend_stamina():
+		stamina_recovery_delay_remaining = STAMINA_RECOVERY_DELAY
+		set_stamina(stamina - STAMINA_DRAIN_PER_SECOND * delta)
+		return stamina > 0.0
+
+	stamina_recovery_delay_remaining = maxf(stamina_recovery_delay_remaining - delta, 0.0)
+
+	if stamina_recovery_delay_remaining <= 0.0 and stamina < max_stamina:
+		set_stamina(stamina + STAMINA_RECOVERY_PER_SECOND * delta)
+
+	return false
+
+
+func _can_spend_stamina() -> bool:
+	return stamina > 0.0 and not stamina_depletion_locked
 
 
 func _update_facing(direction: float) -> void:
@@ -64,7 +114,7 @@ func _update_animation() -> void:
 		return
 
 	if absf(velocity.x) > 15.0:
-		var ground_animation := RUN_ANIMATION if run_mode_enabled else WALK_ANIMATION
+		var ground_animation := RUN_ANIMATION if actual_run_movement else WALK_ANIMATION
 		if dog_sprite.animation != ground_animation or not dog_sprite.is_playing():
 			dog_sprite.play(ground_animation)
 		return

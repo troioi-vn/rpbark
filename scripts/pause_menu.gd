@@ -7,7 +7,7 @@ const SAVE_PATH := "user://savegame.cfg"
 @onready var continue_button: Button = %ContinueButton
 @onready var quit_button: Button = %QuitButton
 @onready var status_label: Label = %StatusLabel
-@onready var player: CharacterBody2D = $"../../Player"
+@onready var player := $"../../Player"
 @onready var inventory_menu: Control = $"../InventoryMenu"
 
 
@@ -49,6 +49,7 @@ func _save_game() -> void:
 	var save_file := ConfigFile.new()
 	save_file.set_value("player", "position_x", player.global_position.x)
 	save_file.set_value("player", "position_y", player.global_position.y)
+	save_file.set_value("player", "stamina", player.stamina)
 
 	var error := save_file.save(SAVE_PATH)
 	if error == OK:
@@ -71,8 +72,10 @@ func _load_game() -> void:
 
 	var position_x := save_file.get_value("player", "position_x", player.global_position.x) as float
 	var position_y := save_file.get_value("player", "position_y", player.global_position.y) as float
+	var stamina := save_file.get_value("player", "stamina", player.stamina) as float
 	player.global_position = Vector2(position_x, position_y)
 	player.velocity = Vector2.ZERO
+	player.set_stamina(stamina)
 	_close_menu()
 
 
