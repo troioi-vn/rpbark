@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dilbm3msgppdq" path="res://assets/street/trees/middle_lane_tree2.png" id="13_qytaj"]
 [ext_resource type="Texture2D" uid="uid://llb3d8ojitfa" path="res://assets/street/trees/middle_lane_tree3.png" id="14_jyknq"]
 [ext_resource type="Texture2D" uid="uid://bye77io137k5s" path="res://assets/street/trees/middle_lane_tree4.png" id="15_rqkmu"]
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="16_jpyrc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hsaxj"]
 size = Vector2(211, 8)
@@ -281,3 +282,89 @@ offset_bottom = 76.0
 theme_override_colors/font_color = Color(0.152941, 0.235294, 0.294118, 1)
 theme_override_font_sizes/font_size = 22
 text = "Arrow keys to move, Shift toggles run, Space/Enter to jump"
+
+[node name="PauseMenu" type="Control" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("16_jpyrc")
+
+[node name="Fade" type="ColorRect" parent="CanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02, 0.025, 0.03, 0.36)
+
+[node name="MenuPanel" type="PanelContainer" parent="CanvasLayer/PauseMenu"]
+custom_minimum_size = Vector2(260, 236)
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -118.0
+offset_right = 130.0
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PauseMenu/MenuPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
+
+[node name="MenuItems" type="VBoxContainer" parent="CanvasLayer/PauseMenu/MenuPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="CanvasLayer/PauseMenu/MenuPanel/MarginContainer/MenuItems"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="SaveButton" type="Button" parent="CanvasLayer/PauseMenu/MenuPanel/MarginContainer/MenuItems"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../LoadButton")
+text = "Save"
+
+[node name="LoadButton" type="Button" parent="CanvasLayer/PauseMenu/MenuPanel/MarginContainer/MenuItems"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../SaveButton")
+focus_neighbor_bottom = NodePath("../ContinueButton")
+text = "Load"
+
+[node name="ContinueButton" type="Button" parent="CanvasLayer/PauseMenu/MenuPanel/MarginContainer/MenuItems"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../LoadButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+text = "Continue"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/PauseMenu/MenuPanel/MarginContainer/MenuItems"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../ContinueButton")
+text = "Quit"
+
+[node name="StatusLabel" type="Label" parent="CanvasLayer/PauseMenu/MenuPanel/MarginContainer/MenuItems"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.73, 0.91, 0.76, 1)
+theme_override_font_sizes/font_size = 16
+text = "Saved"
+horizontal_alignment = 1

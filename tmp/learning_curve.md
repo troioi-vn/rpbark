@@ -56,6 +56,10 @@ Comfort level:
 - facing direction tracking
 - reading project settings from code
 - toggling behavior with `_unhandled_input(event)`
+- opening and closing a pause menu from keyboard input
+- using `get_tree().paused` with an always-processing UI node
+- saving minimal game state with `ConfigFile` and `user://`
+- loading minimal game state back from `ConfigFile`
 - freezing animation state intentionally instead of defaulting to frame zero
 
 ## Practical Things Already Done
@@ -76,6 +80,9 @@ Comfort level:
 - adjusted a parallax scene so visual layers, ground length, and camera limits end together
 - aligned sprite bottoms to a shared street baseline instead of eyeballing each asset independently
 - fixed a mismatch between collision geometry and visible ground polygons
+- added an Esc pause menu with Save, Continue, and Quit options
+- added a first tiny real save file containing the player's position
+- added a Load option that restores the saved player position
 - learned that `Camera2D` limits are screen-edge limits, not player-position limits
 - learned that street-facing parallax layers often want depth on `x` but stability on `y`
 - learned that collidable level geometry should stay out of `ParallaxLayer`, even when the matching art looks like background scenery
@@ -90,6 +97,7 @@ Comfort level:
 - imported PNG assets
 - sprite-sheet workflow with `SpriteFrames` and frame slicing
 - toggled player state with keyboard input events
+- built a small `Control` menu inside a `CanvasLayer`
 - project docs in `docs/`
 - `git log` / commit history as a learning and orientation tool
 - export dialog
@@ -122,6 +130,7 @@ If the player can stand on it, the node should usually live in world space rathe
 - distinguishing decorative scene depth from real gameplay geometry
 - organizing assets into meaningfully named folders
 - updating lightweight docs when systems change
+- building small screen-fixed UI with `Control` nodes
 
 ## Things Not Yet Learned Deeply
 

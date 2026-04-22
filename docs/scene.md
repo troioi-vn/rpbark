@@ -18,7 +18,7 @@ It is responsible for:
 - instancing the player into the world
 - defining the walkable ground
 - providing layered depth through parallax
-- holding lightweight prototype UI such as the control hint label
+- holding lightweight prototype UI such as the control hint label and pause menu
 
 It is not yet responsible for:
 
