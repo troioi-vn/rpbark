@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="R.P.Bark"
+config/version="0.0.1"
 run/main_scene="res://scenes/street.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
@@ -41,6 +42,7 @@ inventory={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0.556863, 0.772549, 0.952941, 1)
 2d/snap/snap_2d_transforms_to_pixel=true
 2d/snap/snap_2d_vertices_to_pixel=true

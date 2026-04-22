@@ -17,6 +17,7 @@ The goal is not to mirror the code line by line. The goal is to explain the part
 - [Player System](./player.md): movement, run toggle, animation states, sprite-sheet assumptions, and tuning notes for the player character.
 - [Street Scene](./scene.md): environment layout, parallax rules, ground/camera ownership, and scene-maintenance notes for the current playable street.
 - [Pause Menu](./pause_menu.md): Esc menu behavior, pause rules, and the tiny save/load loop.
+- [Release Protocol](./release.md): manual versioning, export, release notes, tag, and GitHub pre-release checklist.
 
 ## Notes
 
