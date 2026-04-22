@@ -64,6 +64,9 @@ Comfort level:
 - declaring and emitting a simple signal for player state changes
 - using a `ProgressBar` as a screen-fixed HUD meter
 - separating run intent from actual stamina-backed run movement
+- dynamically instancing a short-lived visual effect scene from player input
+- using a `CanvasItem` shader to make a 2D screen-space distortion ring
+- keeping visual feedback separate from future gameplay collision/detection
 
 ## Practical Things Already Done
 
@@ -90,10 +93,13 @@ Comfort level:
 - added stamina-backed run movement with drain, delayed recovery, and a depletion lockout
 - added a fixed HUD stamina bar driven by the player's `stamina_changed` signal
 - expanded the save file from position-only to position plus stamina
+- added a visual-only bark action on `B` that spawns a fast expanding warped-space ring
 - learned that `Camera2D` limits are screen-edge limits, not player-position limits
 - learned that street-facing parallax layers often want depth on `x` but stability on `y`
 - learned that collidable level geometry should stay out of `ParallaxLayer`, even when the matching art looks like background scenery
 - learned that named input actions can express gameplay intent better than checking a raw key everywhere
+- learned that a spawned effect can live in world space independently from the actor that created it
+- learned that screen-reading shaders can create distortion without changing the underlying world nodes
 - validated the project with local Godot executable
 - learned the basic idea of desktop export
 
@@ -143,6 +149,7 @@ If the player can stand on it, the node should usually live in world space rathe
 - binding a `ProgressBar` to player state through a signal
 - adding a named input action in `project.godot`
 - reusing the `CanvasLayer` overlay pattern for another menu
+- reading a small effect scene/script/shader as one reusable gameplay-feedback unit
 
 ## Things Not Yet Learned Deeply
 

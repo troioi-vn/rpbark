@@ -15,6 +15,7 @@ The player currently owns:
 - horizontal movement
 - jump behavior
 - stamina for run movement
+- visual bark wave spawning
 - facing direction
 - camera follow through the player scene camera
 - animation switching for walk, run, run idle, and jump
@@ -22,6 +23,7 @@ The player currently owns:
 The player does not currently own:
 
 - combat
+- bark collision or NPC/enemy reactions
 - interaction
 - collectibles
 - dialogue
@@ -31,6 +33,7 @@ The player does not currently own:
 
 - `ui_left` and `ui_right`: horizontal movement
 - `ui_accept`: jump
+- `bark`: visual bark wave, mapped to `B`
 - `Shift`: toggle run mode on or off
 
 Run mode is a toggle, not a hold action.
@@ -45,10 +48,10 @@ Current tuning values live in `scripts/player.gd`.
 - floor acceleration: `1400.0`
 - floor deceleration: `1800.0`
 - max stamina: `100.0`
-- run stamina drain: `30.0` per second
-- stamina recovery: `20.0` per second
+- run stamina drain: `1.0` per second
+- stamina recovery: `1.0` per second
 - stamina recovery delay: `1.0` second
-- depletion resume threshold: `25%`
+- depletion resume threshold: `10%`
 
 Current design intent:
 
@@ -75,7 +78,26 @@ Running has two layers:
 
 Actual run movement requires run mode, horizontal input, stamina above zero, and no depletion lockout. Standing still with run mode enabled does not spend stamina.
 
-When stamina reaches zero, the dog automatically moves at walk speed. Stamina begins recovering after the recovery delay. If stamina was fully depleted, run speed becomes available again only after stamina has refilled to at least `25%`.
+When stamina reaches zero, the dog automatically moves at walk speed. Stamina begins recovering after the recovery delay. If stamina was fully depleted, run speed becomes available again only after stamina has refilled to at least `10%`.
+
+## Barking
+
+Pressing `B` spawns a visual-only bark wave from the dog's facing side.
+
+- input action: `bark`
+- wave scene: `res://scenes/bark_wave.tscn`
+- wave logic: `res://scripts/bark_wave.gd`
+- wave shader: `res://shaders/bark_wave.gdshader`
+
+The bark wave is a short-lived expanding ring that uses a `CanvasItem` shader to distort the screen texture around the wavefront. It is deliberately spawned into the street scene instead of being kept as a player child, so the ring expands from the original bark position while the dog can keep moving.
+
+Current bark limits:
+
+- no sound yet
+- no stamina cost
+- no collision or `Area2D`
+- no NPC/enemy reaction yet
+- short cooldown to keep repeated barks visually readable
 
 ## HUD
 

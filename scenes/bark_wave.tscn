@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://docod5a0p1t2u"]
+
+[ext_resource type="Script" uid="uid://dfoag28mncc1j" path="res://scripts/bark_wave.gd" id="1_n5nuh"]
+[ext_resource type="Shader" uid="uid://d18458f5wcknq" path="res://shaders/bark_wave.gdshader" id="2_6cijs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j5tyg"]
+shader = ExtResource("2_6cijs")
+shader_parameter/rect_size_px = Vector2(680, 680)
+shader_parameter/radius_px = 10.0
+shader_parameter/ring_thickness_px = 26.0
+shader_parameter/distortion_strength_px = 11.0
+shader_parameter/alpha = 1.0
+shader_parameter/ring_tint = Color(0.88, 0.96, 1, 0.32)
+
+[node name="BarkWave" type="Node2D" unique_id=1225918028]
+script = ExtResource("1_n5nuh")
+
+[node name="WaveRect" type="ColorRect" parent="." unique_id=1227127541]
+material = SubResource("ShaderMaterial_j5tyg")
+offset_left = -340.0
+offset_top = -340.0
+offset_right = 340.0
+offset_bottom = 340.0
+mouse_filter = 2

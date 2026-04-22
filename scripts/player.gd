@@ -2,11 +2,15 @@ extends CharacterBody2D
 
 signal stamina_changed(current: float, maximum: float)
 
+const BARK_WAVE_SCENE := preload("res://scenes/bark_wave.tscn")
 const RUN_SPEED := 240.0
 const WALK_SPEED := RUN_SPEED * 0.5
 const JUMP_VELOCITY := -420.0
 const FLOOR_ACCELERATION := 1400.0
 const FLOOR_DECELERATION := 1800.0
+const BARK_COOLDOWN := 0.1
+const BARK_FACE_OFFSET := Vector2(38.0, -72.0)
+const BARK_BODY_OFFSET := Vector2(70.0, 0.0)
 const STAMINA_DRAIN_PER_SECOND := 1.0
 const STAMINA_RECOVERY_PER_SECOND := 1.0
 const STAMINA_RECOVERY_DELAY := 1.0
@@ -28,6 +32,8 @@ var stamina := max_stamina
 var stamina_recovery_delay_remaining := 0.0
 var stamina_depletion_locked := false
 var actual_run_movement := false
+var bark_cooldown_remaining := 0.0
+var active_bark_wave: Node2D = null
 
 
 func _ready() -> void:
@@ -40,8 +46,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_SHIFT:
 		run_mode_enabled = not run_mode_enabled
 
+	if event.is_action_pressed("bark") and not (event is InputEventKey and event.echo):
+		_try_bark()
+		get_viewport().set_input_as_handled()
+
 
 func _physics_process(delta: float) -> void:
+	bark_cooldown_remaining = maxf(bark_cooldown_remaining - delta, 0.0)
+
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
@@ -94,6 +106,31 @@ func _update_stamina(delta: float, wants_run: bool) -> bool:
 
 func _can_spend_stamina() -> bool:
 	return stamina > 0.0 and not stamina_depletion_locked
+
+
+func _try_bark() -> void:
+	if bark_cooldown_remaining > 0.0 or is_instance_valid(active_bark_wave):
+		return
+
+	_bark()
+
+
+func _bark() -> void:
+	var bark_wave := BARK_WAVE_SCENE.instantiate() as Node2D
+	get_parent().add_child(bark_wave)
+	bark_wave.global_position = _get_bark_origin()
+	active_bark_wave = bark_wave
+	bark_wave.tree_exited.connect(_on_bark_wave_finished.bind(bark_wave))
+	bark_cooldown_remaining = BARK_COOLDOWN
+
+
+func _on_bark_wave_finished(bark_wave: Node2D) -> void:
+	if active_bark_wave == bark_wave:
+		active_bark_wave = null
+
+
+func _get_bark_origin() -> Vector2:
+	return to_global(BARK_BODY_OFFSET + Vector2(BARK_FACE_OFFSET.x * facing_sign, BARK_FACE_OFFSET.y))
 
 
 func _update_facing(direction: float) -> void:
