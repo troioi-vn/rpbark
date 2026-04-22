@@ -1,12 +1,15 @@
 [gd_scene format=3 uid="uid://dlo6a0w7cpdxy"]
 
 [ext_resource type="Script" uid="uid://bgfyd0hwt5bbm" path="res://scripts/player.gd" id="1_c3vss"]
-[ext_resource type="Texture2D" uid="uid://dsmjgpvqxo6tt" path="res://assets/player/jump_right.png" id="2_5lc7s"]
 [ext_resource type="Texture2D" uid="uid://bui7am6lo6b5h" path="res://assets/player/walk_sheet.png" id="3_mlui1"]
 [ext_resource type="Texture2D" uid="uid://vaou065b3yos" path="res://assets/player/run_sheet.png" id="4_vg0n4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6n4if"]
 size = Vector2(86, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r06"]
+atlas = ExtResource("4_vg0n4")
+region = Rect2(256, 128, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r01"]
 atlas = ExtResource("4_vg0n4")
@@ -27,10 +30,6 @@ region = Rect2(0, 128, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_r05"]
 atlas = ExtResource("4_vg0n4")
 region = Rect2(128, 128, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r06"]
-atlas = ExtResource("4_vg0n4")
-region = Rect2(256, 128, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r07"]
 atlas = ExtResource("4_vg0n4")
@@ -112,7 +111,7 @@ region = Rect2(128, 384, 128, 128)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_5lc7s")
+"texture": SubResource("AtlasTexture_r06")
 }],
 "loop": true,
 "name": &"jump",
@@ -225,7 +224,7 @@ shape = SubResource("RectangleShape2D_6n4if")
 [node name="DogSprite" type="AnimatedSprite2D" parent="." unique_id=235545630]
 position = Vector2(70, -65)
 sprite_frames = SubResource("SpriteFrames_4y8l3")
-animation = &"run_idle"
+animation = &"jump"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1977542258]
 limit_left = 0

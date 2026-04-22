@@ -8,6 +8,7 @@ const SAVE_PATH := "user://savegame.cfg"
 @onready var quit_button: Button = %QuitButton
 @onready var status_label: Label = %StatusLabel
 @onready var player: CharacterBody2D = $"../../Player"
+@onready var inventory_menu: Control = $"../InventoryMenu"
 
 
 func _ready() -> void:
@@ -22,6 +23,9 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_ESCAPE:
+		if inventory_menu.visible:
+			return
+
 		if visible:
 			_close_menu()
 		else:

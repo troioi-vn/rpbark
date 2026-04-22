@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://llb3d8ojitfa" path="res://assets/street/trees/middle_lane_tree3.png" id="14_jyknq"]
 [ext_resource type="Texture2D" uid="uid://bye77io137k5s" path="res://assets/street/trees/middle_lane_tree4.png" id="15_rqkmu"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="16_jpyrc"]
+[ext_resource type="Script" path="res://scripts/inventory_menu.gd" id="17_jx2ws"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hsaxj"]
 size = Vector2(211, 8)
@@ -368,3 +369,74 @@ theme_override_colors/font_color = Color(0.73, 0.91, 0.76, 1)
 theme_override_font_sizes/font_size = 16
 text = "Saved"
 horizontal_alignment = 1
+
+[node name="InventoryMenu" type="Control" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("17_jx2ws")
+
+[node name="Fade" type="ColorRect" parent="CanvasLayer/InventoryMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.018, 0.024, 0.028, 0.42)
+
+[node name="InventoryPanel" type="PanelContainer" parent="CanvasLayer/InventoryMenu"]
+custom_minimum_size = Vector2(360, 304)
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -152.0
+offset_right = 180.0
+offset_bottom = 152.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/InventoryMenu/InventoryPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
+
+[node name="InventoryItems" type="VBoxContainer" parent="CanvasLayer/InventoryMenu/InventoryPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="CanvasLayer/InventoryMenu/InventoryPanel/MarginContainer/InventoryItems"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Inventory"
+horizontal_alignment = 1
+
+[node name="ItemList" type="ItemList" parent="CanvasLayer/InventoryMenu/InventoryPanel/MarginContainer/InventoryItems"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 3
+allow_reselect = true
+
+[node name="EmptyLabel" type="Label" parent="CanvasLayer/InventoryMenu/InventoryPanel/MarginContainer/InventoryItems"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.48, 0.54, 0.58, 1)
+text = "Nothing in the bag yet."
+horizontal_alignment = 1
+
+[node name="CloseButton" type="Button" parent="CanvasLayer/InventoryMenu/InventoryPanel/MarginContainer/InventoryItems"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Close"

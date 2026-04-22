@@ -83,9 +83,11 @@ Comfort level:
 - added an Esc pause menu with Save, Continue, and Quit options
 - added a first tiny real save file containing the player's position
 - added a Load option that restores the saved player position
+- added a simple `I` key inventory overlay with starter items
 - learned that `Camera2D` limits are screen-edge limits, not player-position limits
 - learned that street-facing parallax layers often want depth on `x` but stability on `y`
 - learned that collidable level geometry should stay out of `ParallaxLayer`, even when the matching art looks like background scenery
+- learned that named input actions can express gameplay intent better than checking a raw key everywhere
 - validated the project with local Godot executable
 - learned the basic idea of desktop export
 
@@ -131,6 +133,8 @@ If the player can stand on it, the node should usually live in world space rathe
 - organizing assets into meaningfully named folders
 - updating lightweight docs when systems change
 - building small screen-fixed UI with `Control` nodes
+- adding a named input action in `project.godot`
+- reusing the `CanvasLayer` overlay pattern for another menu
 
 ## Things Not Yet Learned Deeply
 
